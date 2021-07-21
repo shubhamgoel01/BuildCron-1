@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1d24d206-c61f-4205-95c6-36fe4a4d515d" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="JupyterTrust" id="1b7fb179-81ba-4a2f-a61b-e8e560c1b115" />
+  <component name="ProjectId" id="1upStqT1vMdaUIbagjdtn3nsD2k" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="BuildCronBackEnd" type="Python.DjangoServer" factoryName="Django server">
+      <module name="BuildCronBackEnd" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1d24d206-c61f-4205-95c6-36fe4a4d515d" name="Default Changelist" comment="" />
+      <created>1625361254975</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1625361254975</updated>
+      <workItem from="1625361377322" duration="595000" />
+      <workItem from="1625382753340" duration="822000" />
+      <workItem from="1625521382251" duration="2614000" />
+      <workItem from="1625527063254" duration="7806000" />
+      <workItem from="1625605085063" duration="4645000" />
+      <workItem from="1625695664887" duration="9428000" />
+      <workItem from="1625714888230" duration="2622000" />
+      <workItem from="1625782552203" duration="8292000" />
+      <workItem from="1626138595825" duration="4763000" />
+      <workItem from="1626242298886" duration="910000" />
+      <workItem from="1626246238392" duration="580000" />
+      <workItem from="1626302609813" duration="1212000" />
+      <workItem from="1626378510391" duration="1994000" />
+      <workItem from="1626406741526" duration="311000" />
+      <workItem from="1626407383758" duration="775000" />
+      <workItem from="1626470304989" duration="1521000" />
+      <workItem from="1626474357059" duration="2037000" />
+      <workItem from="1626655609864" duration="4941000" />
+      <workItem from="1626722869277" duration="3687000" />
+      <workItem from="1626739937823" duration="6954000" />
+      <workItem from="1626824154494" duration="1192000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="166" key="FileChooserDialogImpl" timestamp="1625786318306">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1625786318306" />
+  </component>
+</project>
