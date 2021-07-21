@@ -1,7 +1,6 @@
 from django.db import models
 
 class Roles(models.Model):
-    roles_id = models.CharField(unique=True, max_length=100)
     roles = models.CharField(unique=True, max_length=100)
     status = models.CharField(max_length=200)
 
@@ -10,7 +9,6 @@ class Roles(models.Model):
 
 
 class Admin(models.Model):
-    Admin_id = models.CharField(max_length=100)
     email = models.CharField(max_length=200)
     password = models.CharField(max_length=230)
     status = models.CharField(max_length=230)
@@ -19,7 +17,6 @@ class Admin(models.Model):
 
 
 class Registration(models.Model):
-    client_id = models.CharField(max_length=100, unique=True)
     company_name = models.CharField(max_length=200)
     phone = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
@@ -40,7 +37,6 @@ class Registration(models.Model):
 
 
 class Licenses(models.Model):
-    license_id = models.CharField(unique=True, max_length=100)
     client = models.ForeignKey('Registration', models.DO_NOTHING, blank=True, null=True)
     user_name = models.CharField(max_length=200)
     start_date = models.DateField()
@@ -56,7 +52,6 @@ class Licenses(models.Model):
 
 
 class Material(models.Model):
-    material_id = models.CharField(unique=True, max_length=100)
     name = models.CharField(max_length=200)
     description = models.TextField()
     uom = models.CharField(max_length=200)
@@ -67,7 +62,6 @@ class Material(models.Model):
 
 
 class Checklist(models.Model):
-    checklist_id = models.CharField(unique=True, max_length=100)
     name = models.CharField(max_length=200)
     type = models.CharField(max_length=200)
 
@@ -76,7 +70,6 @@ class Checklist(models.Model):
 
 
 class Questions(models.Model):
-    question_id = models.CharField(unique=True, max_length=100)
     checklist = models.ForeignKey('Checklist', models.DO_NOTHING, blank=True, null=True)
     text = models.TextField()
     status = models.CharField(max_length=120)
@@ -86,7 +79,6 @@ class Questions(models.Model):
 
 
 class Queries(models.Model):
-    query_id = models.CharField(unique=True, max_length=100)
     email = models.CharField(max_length=100)
     client = models.ForeignKey('Registration', models.DO_NOTHING, blank=True, null=True)
     device_id = models.CharField(max_length=200)
@@ -99,7 +91,6 @@ class Queries(models.Model):
 
 
 class FAQs(models.Model):
-    faq_id = models.CharField(unique=True, max_length=100)
     questions = models.TextField()
     status = models.CharField(max_length=200)
 
@@ -108,7 +99,6 @@ class FAQs(models.Model):
 
 
 class siteInstruction(models.Model):
-    site_id = models.CharField(unique=True, max_length=100)
     category = models.TextField()
     security_level = models.TextField()
 
