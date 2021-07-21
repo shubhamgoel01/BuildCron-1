@@ -197,6 +197,9 @@ class ChecklistView(APIView):
 
     def post(self, request):
         data = request.data
+        if (data.get('Action') == "Bulk"):
+            pass
+            #Do the bulk upload here
         try:
             serializer = ChecklistSerializer(data=data)
             if serializer.is_valid():
@@ -252,7 +255,11 @@ class QuestionsView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
+
         data = request.data
+        if (data.get('Action') == "Bulk"):
+            pass
+            #Do the bulk upload here
         try:
             serializer = QuestionsSerializer(data=data)
             if serializer.is_valid():
@@ -309,6 +316,9 @@ class MaterialsView(APIView):
 
     def post(self, request):
         data = request.data
+        if (data.get('Action') == "Bulk"):
+            pass
+            #Do the bulk upload here
         try:
             serializer = MaterialSerializer(data=data)
             if serializer.is_valid():
