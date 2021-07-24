@@ -36,6 +36,8 @@ class Registration(models.Model):
         return "%s" % (self.company_name)
 
 
+
+
 class Licenses(models.Model):
     client = models.ForeignKey('Registration', models.DO_NOTHING, blank=True, null=True)
     user_name = models.CharField(max_length=200)

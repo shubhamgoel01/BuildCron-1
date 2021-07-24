@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d24d206-c61f-4205-95c6-36fe4a4d515d" name="Default Changelist" comment="" />
+    <list default="true" id="1d24d206-c61f-4205-95c6-36fe4a4d515d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuildCron/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BuildCron/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuildCron/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BuildCron/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +37,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="JupyterTrust" id="1b7fb179-81ba-4a2f-a61b-e8e560c1b115" />
   <component name="ProjectId" id="1upStqT1vMdaUIbagjdtn3nsD2k" />
   <component name="ProjectViewState">
@@ -22,7 +48,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Acer\Desktop\BuildCronBackEnd\media" />
+      <recent name="C:\Users\Acer\Desktop\BuildCronBackEnd\BuildCron" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="BuildCronBackEnd" type="Python.DjangoServer" factoryName="Django server">
@@ -77,12 +110,26 @@
       <workItem from="1626655609864" duration="4941000" />
       <workItem from="1626722869277" duration="3687000" />
       <workItem from="1626739937823" duration="6954000" />
-      <workItem from="1626824154494" duration="3154000" />
+      <workItem from="1626824154494" duration="4654000" />
+      <workItem from="1627081042186" duration="5130000" />
+      <workItem from="1627154550403" duration="4546000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="549" y="166" key="FileChooserDialogImpl" timestamp="1625786318306">

@@ -1,10 +1,16 @@
+import csv
+import os
+
+from django.conf import settings
 from django.shortcuts import render, get_object_or_404
+from pymongo import MongoClient
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, permissions
 from BuildCron.serializers import *
 from django.db.models import Q
 
+client = MongoClient('0.0.0.0', 27017)
 
 class CustomUserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -105,6 +111,7 @@ class RegistrationView(APIView):
         return Response({"success": "Id related data deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
 
+
 class Login(APIView):
 
     def post(self, request):
@@ -115,6 +122,8 @@ class Login(APIView):
             if Registration.objects.filter(Q(password__iexact=data.get('password'))):
                 return Response({"message": "Successfully Logged In"},
                                 status=status.HTTP_200_OK)
+
+
             return Response({"message": "Wrong Password"},
                             status=status.HTTP_200_OK)
         else:
@@ -147,7 +156,7 @@ class LicensesView(APIView):
                 return Response({"Status": True,
                                  "Message": "Successfully Added License"},
                                 status=status.HTTP_201_CREATED)
-            serializer.save()
+
             return Response({"Status": True,
                              "Message": "Successfully Added License"},
                             status=status.HTTP_201_CREATED)
@@ -198,8 +207,26 @@ class ChecklistView(APIView):
     def post(self, request):
         data = request.data
         if (data.get('Action') == "Bulk"):
-            pass
-            #Do the bulk upload here
+            with open(os.path.join(settings.BASE_DIR, 'media/Checklist.csv')) as csv_file:
+                data = csv.reader(csv_file)
+                for row in data:
+                    checklist = Checklist.objects.get_or_create(
+                        name=row[0],
+                        type=row[1],
+                    )
+            try:
+                serializer = ChecklistSerializer(data=checklist)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response({"Status": True,
+                                     "Message": "Successfully Added Checklist"},
+                                    status=status.HTTP_201_CREATED)
+                return Response({"Status": True,
+                                 "Message": "Successfully Added Checklist"},
+                                status=status.HTTP_201_CREATED)
+            except Exception as e:
+                return Response({"Errors": "Some field miss check and enter", "exception": str(e), "status": False},
+                                status=status.HTTP_400_BAD_REQUEST)
         try:
             serializer = ChecklistSerializer(data=data)
             if serializer.is_valid():
@@ -207,7 +234,7 @@ class ChecklistView(APIView):
                 return Response({"Status": True,
                                  "Message": "Successfully Added Checklist"},
                                 status=status.HTTP_201_CREATED)
-            serializer.save()
+
             return Response({"Status": True,
                              "Message": "Successfully Added Checklist"},
                             status=status.HTTP_201_CREATED)
@@ -258,8 +285,27 @@ class QuestionsView(APIView):
 
         data = request.data
         if (data.get('Action') == "Bulk"):
-            pass
-            #Do the bulk upload here
+            with open(os.path.join(settings.BASE_DIR, 'media/Question.csv')) as csv_file:
+                data = csv.reader(csv_file)
+                for row in data:
+                    question = Questions.objects.get_or_create(
+                        checklist=row[0],
+                        name=row[1],
+                        status=row[2],
+                    )
+            try:
+                serializer = QuestionsSerializer(data=question)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response({"Status": True,
+                                     "Message": "Successfully Added Question"},
+                                    status=status.HTTP_201_CREATED)
+                return Response({"Status": False,
+                                 "Message": "Failed To Add Question"},
+                                status=status.HTTP_400_BAD_REQUEST)
+            except Exception as e:
+                return Response({"Errors": "Some field miss check and enter", "exception": str(e), "status": False},
+                                status=status.HTTP_400_BAD_REQUEST)
         try:
             serializer = QuestionsSerializer(data=data)
             if serializer.is_valid():
@@ -267,7 +313,6 @@ class QuestionsView(APIView):
                 return Response({"Status": True,
                                  "Message": "Successfully Added Question"},
                                 status=status.HTTP_201_CREATED)
-            serializer.save()
             return Response({"Status": False,
                              "Message": "Failed To Add Question"},
                             status=status.HTTP_400_BAD_REQUEST)
@@ -317,8 +362,29 @@ class MaterialsView(APIView):
     def post(self, request):
         data = request.data
         if (data.get('Action') == "Bulk"):
-            pass
-            #Do the bulk upload here
+            with open(os.path.join(settings.BASE_DIR, 'media/Material.csv')) as csv_file:
+                data = csv.reader(csv_file)
+
+                for row in data:
+                    material = Material.objects.get_or_create(
+                        name=row[0],
+                        description=row[1],
+                        uom=row[2],
+                        status=row[3],
+                    )
+            try:
+                serializer = MaterialSerializer(data=material)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response({"Status": True,
+                                     "Message": "Successfully Added Material"},
+                                    status=status.HTTP_201_CREATED)
+                return Response({"Status": False,
+                                 "Message": "Failed To Add Material"},
+                                status=status.HTTP_400_BAD_REQUEST)
+            except Exception as e:
+                return Response({"Errors": "Some field miss check and enter", "exception": str(e), "status": False},
+                                status=status.HTTP_400_BAD_REQUEST)
         try:
             serializer = MaterialSerializer(data=data)
             if serializer.is_valid():
@@ -326,7 +392,6 @@ class MaterialsView(APIView):
                 return Response({"Status": True,
                                  "Message": "Successfully Added Material"},
                                 status=status.HTTP_201_CREATED)
-            serializer.save()
             return Response({"Status": False,
                              "Message": "Failed To Add Material"},
                             status=status.HTTP_400_BAD_REQUEST)
@@ -381,7 +446,7 @@ class QueriesView(APIView):
                 return Response({"Status": True,
                                  "Message": "Successfully Added Query"},
                                 status=status.HTTP_201_CREATED)
-            serializer.save()
+
             return Response({"Status": False,
                              "Message": "Failed To Add Query"},
                             status=status.HTTP_400_BAD_REQUEST)
