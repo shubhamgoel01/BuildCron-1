@@ -14,6 +14,9 @@ urlpatterns = [
     path('material/', MaterialsView.as_view(), name="Material Data"),
     path('queries/', QueriesView.as_view(), name="Queries Data"),
 
+    path('post_questions/', QuestionPostView.as_view(), name="Post Questions"),
+    path('post_images/', PostImagesView.as_view(), name="Post Multiple Images"),
+
     path('login/', Login.as_view(), name="user login"),
     path('licenses/', LicensesView.as_view(), name="user Licenses"),
     #path('logout/', Logout.as_view(), name="user logout"),

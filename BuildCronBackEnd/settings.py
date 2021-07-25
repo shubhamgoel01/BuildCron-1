@@ -110,7 +110,7 @@ DATABASES = {
         'NAME': 'buildcronadmin',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': '0.0.0.0',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }

@@ -20,10 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d24d206-c61f-4205-95c6-36fe4a4d515d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuildCron/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BuildCron/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuildCron/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/BuildCron/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuildCron/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BuildCron/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuildCron/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BuildCron/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuildCronBackEnd/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BuildCronBackEnd/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Checklist.csv" beforeDir="false" afterPath="$PROJECT_DIR$/media/Checklist.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Material.csv" beforeDir="false" afterPath="$PROJECT_DIR$/media/Material.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Question.csv" beforeDir="false" afterPath="$PROJECT_DIR$/media/Question.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +116,8 @@
       <workItem from="1626739937823" duration="6954000" />
       <workItem from="1626824154494" duration="4654000" />
       <workItem from="1627081042186" duration="5130000" />
-      <workItem from="1627154550403" duration="4546000" />
+      <workItem from="1627154550403" duration="5968000" />
+      <workItem from="1627164609432" duration="8925000" />
     </task>
     <servers />
   </component>

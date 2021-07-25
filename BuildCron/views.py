@@ -1,6 +1,7 @@
 import csv
 import os
 
+from bson import ObjectId
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 from pymongo import MongoClient
@@ -9,8 +10,9 @@ from rest_framework.views import APIView
 from rest_framework import status, permissions
 from BuildCron.serializers import *
 from django.db.models import Q
+from BuildCron.config import stringify_object_id
 
-client = MongoClient('0.0.0.0', 27017)
+client = MongoClient('localhost', 27017)
 
 class CustomUserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -114,21 +116,131 @@ class RegistrationView(APIView):
 
 class Login(APIView):
 
+    permission_classes = (permissions.AllowAny,)
+
+
+
     def post(self, request):
         data = request.data
         finding_exising_user = Registration.objects.filter(Q(email__iexact=data.get('email')))
 
         if finding_exising_user.exists():
             if Registration.objects.filter(Q(password__iexact=data.get('password'))):
-                return Response({"message": "Successfully Logged In"},
-                                status=status.HTTP_200_OK)
+                dbs = client.list_database_names()
+                if data.get('user') in dbs:
+                    return Response({"message": "Successfully Logged In User"},
+                                    status=status.HTTP_200_OK)
+                else:
+                    checkist_data = Checklist.objects.all()
+                    question_data = Questions.objects.all()
+                    db = client[data.get('user')]
+                    checklist = db['checklist']
+                    questions = db['questions']
+                    for data in checkist_data:
+                        checklist.insert_one({
+                            'checklist_id':data.id,
+                            'name':data.name,
+                            'type':data.type
+                        })
+                    for data in question_data:
+                        questions.insert_one({
+                            'checklist_id':data.checklist.id,
+                            'text':data.text,
+                            'status':data.status
+                        })
 
-
+                    return Response({"message": "Successfully Logged In"},
+                                    status=status.HTTP_200_OK)
             return Response({"message": "Wrong Password"},
                             status=status.HTTP_200_OK)
         else:
             return Response({'message': 'No Such email exists'}, status=status.HTTP_200_OK)
 
+class QuestionPostView(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def getChecklistData(self, db):
+        checklist_data = db.checklist.find({})
+        if checklist_data:
+            checklist_data = stringify_object_id(checklist_data)
+            return checklist_data
+        else:
+            return None
+
+    def getQuestionData(self, db):
+        question_data = db.questions.find({})
+        if question_data:
+            checklist_data = stringify_object_id(question_data)
+            return checklist_data
+        else:
+            return None
+
+    def get(self, request):
+        data = request.data
+        user = request.GET.get('user')
+        if (data.get('type') == "checklist"):
+            db = client[user]
+            retrieve = self.getChecklistData(db)
+            return Response({'status':True, 'Message':retrieve}, status=status.HTTP_200_OK)
+        else:
+            db = client[user]
+            retrieve = self.getQuestionData(db)
+            return Response({'status': True, 'Message': retrieve}, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        user_name = request.GET.get('user')
+        data = request.data
+        try:
+            db = client[user_name]
+            questions = db['questions']
+            questions.update_one(
+                {
+                    '_id': ObjectId(data.get('id'))
+                },
+                {
+                    "$set":
+                        {
+                            "status": data.get('status')
+                        }
+                }
+            )
+            return Response({'Status': True, 'Message': 'Successfully Updated Question'}, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"Errors": "Some field miss check and enter", "exception": str(e), "status": False},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+class PostImagesView(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def getChecklistData(self, db):
+        checklist_data = db.checklist.find({})
+        if checklist_data:
+            checklist_data = stringify_object_id(checklist_data)
+            return checklist_data
+        else:
+            return None
+
+    def get(self, request):
+        user = request.GET.get('user')
+        db = client[user]
+        retrieve = self.getChecklistData(db)
+        return Response({'status':True, 'Message':retrieve}, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        data = request.data
+        try:
+            db = client[data.get('user')]
+            checklist_images = db['Checklist_Images']
+            checklist_images.insert_one({
+                'checklist_id':data.get('checklist_id'),
+                'images': data.get('images')
+            })
+            return Response({'Status': True, 'Message': 'Successfully Added Images'}, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"Errors": "Some field miss check and enter", "exception": str(e), "status": False},
+                            status=status.HTTP_400_BAD_REQUEST)
 
 class LicensesView(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -210,6 +322,7 @@ class ChecklistView(APIView):
             with open(os.path.join(settings.BASE_DIR, 'media/Checklist.csv')) as csv_file:
                 data = csv.reader(csv_file)
                 for row in data:
+                    print(row)
                     checklist = Checklist.objects.get_or_create(
                         name=row[0],
                         type=row[1],
@@ -289,9 +402,9 @@ class QuestionsView(APIView):
                 data = csv.reader(csv_file)
                 for row in data:
                     question = Questions.objects.get_or_create(
-                        checklist=row[0],
-                        name=row[1],
-                        status=row[2],
+                        name=row[0],
+                        status=row[1],
+                        checklist_id=row[2]
                     )
             try:
                 serializer = QuestionsSerializer(data=question)
