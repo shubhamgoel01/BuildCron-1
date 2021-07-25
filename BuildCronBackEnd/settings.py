@@ -108,9 +108,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'buildcronadmin',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '0.0.0.0',
+        'USER': 'aarthif',
+        'PASSWORD': 'Virtusatechp0010$',
+        'HOST': 'ec2-54-169-244-23.ap-southeast-1.compute.amazonaws.com',
         'PORT': '3306',
     }
 }
