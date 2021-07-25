@@ -12,7 +12,7 @@ from BuildCron.serializers import *
 from django.db.models import Q
 from BuildCron.config import stringify_object_id
 
-client = MongoClient('localhost', 27017)
+client = MongoClient('0.0.0.0', 27017)
 
 class CustomUserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
