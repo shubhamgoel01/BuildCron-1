@@ -402,7 +402,7 @@ class QuestionsView(APIView):
                 data = csv.reader(csv_file)
                 for row in data:
                     question = Questions.objects.get_or_create(
-                        name=row[0],
+                        text=row[0],
                         status=row[1],
                         checklist_id=row[2]
                     )
