@@ -26,7 +26,7 @@ class Registration(models.Model):
     state = models.CharField(max_length=200)
     pincode = models.CharField(max_length=200)
     status = models.CharField(max_length=200)
-    end_date = models.DateTimeField()
+    end_date = models.DateField()
     no_of_license = models.IntegerField()
     contact_person = models.CharField(max_length=200)
     username = models.CharField(max_length=100, default='', null=True)
