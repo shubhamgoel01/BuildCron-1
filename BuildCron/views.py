@@ -160,13 +160,21 @@ class Login(APIView):
 class QuestionPostView(APIView):
     permission_classes = (permissions.AllowAny,)
 
-    def getChecklistData(self, db):
-        checklist_data = list(db.checklist.find({}))
-        if checklist_data:
-            stringify_object_id(checklist_data)
-            return checklist_data
+    def getChecklistData(self, db, sub_type):
+        if sub_type == "Quality":
+            checklist_data = list(db.checklist.find({'type':sub_type}))
+            if checklist_data:
+                stringify_object_id(checklist_data)
+                return checklist_data
+            else:
+                return None
         else:
-            return None
+            checklist_data = list(db.checklist.find({'type': sub_type}))
+            if checklist_data:
+                stringify_object_id(checklist_data)
+                return checklist_data
+            else:
+                return None
 
     def getQuestionData(self, db):
         question_data = list(db.questions.find({}))
@@ -180,8 +188,9 @@ class QuestionPostView(APIView):
         data = request.data
         if (request.GET.get('type') == "checklist"):
             db_name = request.GET.get('mobile')
+            sub_type = request.GET.get('sub_type')
             db = client[db_name]
-            retrieve = self.getChecklistData(db)
+            retrieve = self.getChecklistData(db,sub_type)
             return Response({'status':True, 'Message':retrieve}, status=status.HTTP_200_OK)
         else:
             db_name = request.GET.get('mobile')
