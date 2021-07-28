@@ -164,7 +164,6 @@ class QuestionPostView(APIView):
         checklist_data = list(db.checklist.find({}))
         if checklist_data:
             stringify_object_id(checklist_data)
-            print(checklist_data)
             return checklist_data
         else:
             return None
@@ -179,13 +178,13 @@ class QuestionPostView(APIView):
 
     def get(self, request):
         data = request.data
-        if (data.get('type') == "checklist"):
-            db_name = data.get('mobile')
+        if (request.GET.get('type') == "checklist"):
+            db_name = request.GET.get('mobile')
             db = client[db_name]
             retrieve = self.getChecklistData(db)
             return Response({'status':True, 'Message':retrieve}, status=status.HTTP_200_OK)
         else:
-            db_name = data.get('mobile')
+            db_name = request.GET.get('mobile')
             db = client[db_name]
             retrieve = self.getQuestionData(db)
             return Response({'status': True, 'Message': retrieve}, status=status.HTTP_200_OK)
