@@ -122,18 +122,18 @@ class Login(APIView):
 
     def post(self, request):
         data = request.data
-        finding_exising_user = Registration.objects.filter(Q(email__iexact=data.get('email')))
+        finding_exising_user = Registration.objects.filter(Q(phone__exact=data.get('mobile')))
 
         if finding_exising_user.exists():
             if Registration.objects.filter(Q(password__iexact=data.get('password'))):
                 dbs = client.list_database_names()
-                if data.get('user') in dbs:
+                if data.get('mobile') in dbs:
                     return Response({"message": "Successfully Logged In User"},
                                     status=status.HTTP_200_OK)
                 else:
                     checkist_data = Checklist.objects.all()
                     question_data = Questions.objects.all()
-                    db = client[data.get('user')]
+                    db = client[data.get('mobile')]
                     checklist = db['checklist']
                     questions = db['questions']
                     for data in checkist_data:
@@ -179,18 +179,18 @@ class QuestionPostView(APIView):
     def get(self, request):
         data = request.data
         if (data.get('type') == "checklist"):
-            db_name = data.get('user')
+            db_name = data.get('mobile')
             db = client[db_name]
             retrieve = self.getChecklistData(db)
             return Response({'status':True, 'Message':retrieve}, status=status.HTTP_200_OK)
         else:
-            db_name = data.get('user')
+            db_name = data.get('mobile')
             db = client[db_name]
             retrieve = self.getQuestionData(db)
             return Response({'status': True, 'Message': retrieve}, status=status.HTTP_200_OK)
 
     def post(self, request):
-        user_name = request.GET.get('user')
+        user_name = request.GET.get('mobile')
         data = request.data
         try:
             db = client[user_name]
@@ -224,7 +224,7 @@ class PostImagesView(APIView):
             return None
 
     def get(self, request):
-        user = request.GET.get('user')
+        user = request.GET.get('mobile')
         db = client[user]
         retrieve = self.getChecklistData(db)
         return Response({'status':True, 'Message':retrieve}, status=status.HTTP_200_OK)
@@ -232,7 +232,7 @@ class PostImagesView(APIView):
     def post(self, request):
         data = request.data
         try:
-            db = client[data.get('user')]
+            db = client[data.get('mobile')]
             checklist_images = db['Checklist_Images']
             checklist_images.insert_one({
                 'checklist_id':data.get('checklist_id'),
