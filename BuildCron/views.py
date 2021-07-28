@@ -226,10 +226,10 @@ class QuestionPostView(APIView):
 class PostImagesView(APIView):
     permission_classes = (permissions.AllowAny,)
 
-    def getChecklistData(self, db):
-        checklist_data = db.checklist.find({})
+    def getChecklistImagesData(self, db):
+        checklist_data = list(db.Checklist_Images.find({}))
         if checklist_data:
-            checklist_data = stringify_object_id(checklist_data)
+            stringify_object_id(checklist_data)
             return checklist_data
         else:
             return None
@@ -237,7 +237,7 @@ class PostImagesView(APIView):
     def get(self, request):
         user = request.GET.get('mobile')
         db = client[user]
-        retrieve = self.getChecklistData(db)
+        retrieve = self.getChecklistImagesData(db)
         return Response({'status':True, 'Message':retrieve}, status=status.HTTP_200_OK)
 
     def post(self, request):
