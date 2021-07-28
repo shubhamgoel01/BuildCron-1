@@ -179,12 +179,12 @@ class QuestionPostView(APIView):
         data = request.data
         user = request.GET.get('user')
         if (data.get('type') == "checklist"):
-            db = client[user]
+            db = client['aarthif']
             retrieve = self.getChecklistData(db)
             print(retrieve)
             return Response({'status':True, 'Message':retrieve}, status=status.HTTP_200_OK)
         else:
-            db = client[user]
+            db = client['aarthif']
             retrieve = self.getQuestionData(db)
             return Response({'status': True, 'Message': retrieve}, status=status.HTTP_200_OK)
 
