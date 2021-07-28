@@ -12,7 +12,7 @@ from BuildCron.serializers import *
 from django.db.models import Q
 from BuildCron.config import stringify_object_id
 
-client = MongoClient('ec2-54-169-244-23.ap-southeast-1.compute.amazonaws.com', 27017)
+client = MongoClient('localhost', 27017)
 
 class CustomUserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -162,7 +162,8 @@ class QuestionPostView(APIView):
     def getChecklistData(self, db):
         checklist_data = list(db.checklist.find({}))
         if checklist_data:
-            checklist_data = stringify_object_id(checklist_data)
+            stringify_object_id(checklist_data)
+            print(checklist_data)
             return checklist_data
         else:
             return None
@@ -178,11 +179,13 @@ class QuestionPostView(APIView):
     def get(self, request):
         data = request.data
         if (data.get('type') == "checklist"):
-            db = client[str(data.get('user'))]
+            db_name = data.get('user')
+            db = client[db_name]
             retrieve = self.getChecklistData(db)
             return Response({'status':True, 'Message':retrieve}, status=status.HTTP_200_OK)
         else:
-            db = client[str(data.get('user'))]
+            db_name = data.get('user')
+            db = client[db_name]
             retrieve = self.getQuestionData(db)
             return Response({'status': True, 'Message': retrieve}, status=status.HTTP_200_OK)
 
