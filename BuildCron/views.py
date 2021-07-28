@@ -147,7 +147,7 @@ class Login(APIView):
                         questions.insert_one({
                             'checklist_id':data.checklist.id,
                             'text':data.text,
-                            'status':data.status
+                            'status':data.status,
                             'note':""
                         })
 
