@@ -172,8 +172,8 @@ class QuestionPostView(APIView):
     def getQuestionData(self, db):
         question_data = list(db.questions.find({}))
         if question_data:
-            checklist_data = stringify_object_id(question_data)
-            return checklist_data
+            stringify_object_id(question_data)
+            return question_data
         else:
             return None
 
