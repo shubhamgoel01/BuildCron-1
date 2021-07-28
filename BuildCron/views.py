@@ -160,7 +160,7 @@ class QuestionPostView(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def getChecklistData(self, db):
-        checklist_data = list(db.checklist.find({}))
+        checklist_data = list(db['checklist'].find({}))
         if checklist_data:
             checklist_data = stringify_object_id(checklist_data)
             return checklist_data
@@ -168,7 +168,7 @@ class QuestionPostView(APIView):
             return None
 
     def getQuestionData(self, db):
-        question_data = list(db.questions.find({}))
+        question_data = list(db['questions'].find({}))
         if question_data:
             checklist_data = stringify_object_id(question_data)
             return checklist_data
