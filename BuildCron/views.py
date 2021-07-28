@@ -12,7 +12,8 @@ from BuildCron.serializers import *
 from django.db.models import Q
 from BuildCron.config import stringify_object_id
 
-client = MongoClient('localhost', 27017)
+#mongodb://ec2-54-169-244-23.ap-southeast-1.compute.amazonaws.com:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
+client = MongoClient('ec2-54-169-244-23.ap-southeast-1.compute.amazonaws.com', 27017)
 
 class CustomUserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
