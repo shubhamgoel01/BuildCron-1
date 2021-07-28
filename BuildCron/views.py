@@ -148,6 +148,7 @@ class Login(APIView):
                             'checklist_id':data.checklist.id,
                             'text':data.text,
                             'status':data.status
+                            'note':""
                         })
 
                     return Response({"message": "Successfully Logged In"},
