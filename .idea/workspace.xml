@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d24d206-c61f-4205-95c6-36fe4a4d515d" name="Default Changelist" comment="" />
+    <list default="true" id="1d24d206-c61f-4205-95c6-36fe4a4d515d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/BuildCron/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BuildCron/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +113,7 @@
       <workItem from="1627164609432" duration="12849000" />
       <workItem from="1627242583582" duration="1959000" />
       <workItem from="1627372050509" duration="309000" />
-      <workItem from="1627416869898" duration="5133000" />
+      <workItem from="1627416869898" duration="5444000" />
     </task>
     <servers />
   </component>
