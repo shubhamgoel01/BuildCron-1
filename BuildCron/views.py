@@ -154,9 +154,9 @@ class Login(APIView):
                     return Response({"message": "Successfully Logged In"},
                                     status=status.HTTP_200_OK)
             return Response({"message": "Wrong Password"},
-                            status=status.HTTP_200_OK)
+                            status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response({'message': 'No Such email exists'}, status=status.HTTP_200_OK)
+            return Response({'message': 'No Such email exists'}, status=status.HTTP_400_BAD_REQUEST)
 
 class QuestionPostView(APIView):
     permission_classes = (permissions.AllowAny,)
