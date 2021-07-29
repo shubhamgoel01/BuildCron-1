@@ -213,7 +213,7 @@ class QuestionPostView(APIView):
                     "$set":
                         {
                             "status": data.get('status'),
-                            "note": data.get('note') if data.get('status') == "0" else ""
+                            "note": data.get('note') if data.get('status') == "2" else ""
                         }
                 }
             )
