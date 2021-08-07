@@ -106,3 +106,59 @@ class siteInstruction(models.Model):
 
     def __str__(self):
         return "%s" % (self.category)
+
+# 7 auuest
+
+
+class NC(models.Model):
+    category = models.TextField()
+    security_level = models.TextField()
+
+    def __str__(self):
+        return "%s" % (self.category)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class Employee(models.Model):
+#     name = models.CharField(max_length=100)
+#     designation = models.charfield(max_length=100)
+#     email_id = models.CharField(max_length=100)
+#     phone = models.CharField(max_length=100)
+
+#     def __str__(self):
+#         return self.pro_name
+
+# class Project(models.Model):
+#     date = models.DateField()
+#     name = models.CharField(max_length=100)    
+#     location = models.CharField(max_length=100)
+#     types = models.CharField(max_length=100)
+#     approver = models.CharField(max_length=100)
+
+#     def __str__(self):
+#         return self.pro_name
+
+
+# class ProjectEmployee(models.Model):
+#     employee_name = models.ForeignKey(Employee,on_delete=models.CASCADE,related_name="emp")
+#     project_name = models.ForeignKey(Project,on_delete=models.CASCADE,related_name='proj')
+#     project_assigned = models.ManyToManyField(Project)
+
+#     def __str__(self):
+#         return self.pro_name

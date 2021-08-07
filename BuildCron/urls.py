@@ -21,6 +21,14 @@ urlpatterns = [
     path('licenses/', LicensesView.as_view(), name="user Licenses"),
     #path('logout/', Logout.as_view(), name="user logout"),
 
+    # 7 auguest 
+    
+    path('Roles/', RolesView.as_view(), name="Roles Data"),
+    path('Admin/', AdminView.as_view(), name="Admin Data"),
+    path('siteInstruction/', siteInstructionView.as_view(), name="siteInstruction Data"),
+    path('FAQs/', FAQsView.as_view(), name="FAQs Data"),
+    path('nc/', NCView.as_view(), name="NC Data"),
+
 
 ]
 

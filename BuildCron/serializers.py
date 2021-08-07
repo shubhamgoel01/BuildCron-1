@@ -85,3 +85,8 @@ class siteInstructionSerializer(serializers.ModelSerializer):
     class Meta:
         model = siteInstruction
         fields = '__all__'
+
+class NCSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NC
+        fields = '__all__'
